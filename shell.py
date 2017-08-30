@@ -1,34 +1,69 @@
 import core
 import time
 from random import choice, randint
+from termcolor import cprint
 
-# , 'Goku'),core.Gladiator(100, 0, randint(5, 9), randint(15, 25), 'Ryu')])
-# >>> l = 'a b c d e f g'.split()
-# >>> l
-# ['a', 'b', 'c', 'd', 'e', 'f', 'g']
-# >>> ul = [ch.upper() for ch in l]
-# >>> ul
-# ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-# >>> list(map(lambda s: s.upper(), l))
-# ['A', 'B', 'C', 'D', 'E', 'F', 'G']
-# >>> gameplay.is_fighter('Goku')
-# True
-# >>> gameplay.is_fighter('Mickey Mouse')
-# False
-# >>> gameplay.gladiators.append(core.Gladiator(100, 100, 50, 50, 'Mickey Mouse'))
-# >>> gameplay.is_fighter('Mickey Mouse')
-# True
-# >>> warrior = gameplay.get_fighter('Mickey Mouse')
-# >>> warrior
-# Gladiator(100, 100, 50, 50)
-# >>> print(warrior)
-# Mickey Mouse || Health: 100, Rage: 100, Damage_low: 50, Damage_high: 50
-# >>> attacker = gameplay.get_fighter('Goku')
-# >>> warrior.attack(attacker)
-# >>> print(attacker)
-# Goku || Health: 0, Rage: 0, Damage_low: 6, Damage_high: 21
-# >>> attacker.is_dead()
-# True
+
+def beginning_skull():
+    'Function will print a skull at the beginning of the gladiator game'
+    cprint(
+        "                                      ____                                              \n"
+        "                                 __,---'     `--.__                                     \n"
+        "                             ,-'                ; `.                                    \n"
+        "                             ,'                  `--.`--.                               \n"
+        "                             ,'                       `._ `-.                           \n"
+        "                             ;                     ;     `-- ;                          \n"
+        "                         ,-'-_       _,-~~-.      ,--      `.                           \n"
+        "                         ;;   `-,;    ,'~`.__    ,;;;    ;  ;                           \n"
+        "                         ;;    ;,'  ,;;      `,  ;;;     `. ;                           \n"
+        "                         `:   ,'    `:;     __/  `.;      ; ;                           \n"
+        "                             ;~~^.   `.   `---'~~    ;;      ; ;                        \n"
+        "                             `,' `.   `.            .;;;     ;'                         \n"
+        "                             ,',^. `.  `._    __    `:;     ,'                          \n"
+        "                             `-' `--'    ~`--'~~`--.  ~    ,'                           \n"
+        "                         /;`-;_ ; ;. /. /   ; ~~`-.     ;                               \n"
+        "     -._                   ; ;  ; `,;`-;__;---;      `----'                             \n"
+        "     `--.__             ``-`-;__;:  ;  ;__;                                             \n"
+        "     ...     `--.__                `-- `-'                                              \n"
+        "     `--.:::...     `--.__                ____                                          \n"
+        "         `--:::::--.      `--.__    __,--'    `.                                        \n"
+        "             `--:::`;....       `--'       ___  `.                                      \n"
+        "                 `--`-:::...     __           )  ;                                      \n"
+        "                     ~`-:::...   `---.      ( ,'                                        \n"
+        "                         ~`-:::::::::`--.   `-.                                         \n"
+        "                             ~`-::::::::`.    ;                                         \n"
+        "                                 ~`--:::,'   ,'                                         \n"
+        "                                     ~~`--'~                                            \n",
+        'red',
+        end="")
+
+
+def mickey_mouse():
+    ''' 
+    Function will print a mickey mouse ascii whenever it is called
+    '''
+    cprint(
+        '    ###########                                       \n'
+        '  ###############        __-----__          ##        \n'
+        '##################    ###          \       ####       \n'
+        '################## #### #            \     # ##       \n'
+        ' ####################            \~~\  \   ,##",      \n'
+        '  #################       /~~\    \## \  \"     :     \n'
+        '    ###############       \    \   \##" /       :     \n'
+        '              #######       \### \    /         :     \n'
+        '              #############  \###/             :      \n'
+        '               ########                       :       \n'
+        '                ######   __                  :        \n'
+        '                 ####   /\                  /         \n'
+        '      ############ ###    \\______________/|          \n'
+        '    ##################     \ __         / /           \n'
+        '  ####################\__    \  \---\,/ /             \n'
+        '  ###################    \     \_____/ /              \n'
+        '   #################       \_________/                \n'
+        '    ###############                                   \n'
+        '      ###########                                     \n',
+        'red',
+        end="")
 
 
 def make_players():
@@ -134,20 +169,32 @@ def winner(winner, loser):
 
 
 def two_player_game():
-    dmg_low = randint(5, 9)
-    dmg_high = randint(15, 25)
-    goku = core.Gladiator(100, 0, 5, 20, 'Goku')
-    rando = core.Gladiator(100, 0, 9, 16, 'Rando')
-    print(goku, rando, sep="\n")
+    gameplay = make_players()
+    print_players()
     while True:
-        battle(goku, rando)
-        if rando.is_dead():
-            winner(goku, rando)
+        player_one = input(
+            'Player 1, who would you like to be? ').strip().lower()
+        if player_one == 'mickey mouse':
+            mickey_mouse()
+        player_two = input(
+            'Player 2, who would you like to be? ').strip().lower()
+        if player_two == 'mickey mouse':
+            mickey_mouse()
+        if gameplay.is_fighter(player_one) and gameplay.is_fighter(player_two):
+            first_player = gameplay.get_fighter(player_one)
+            second_player = gameplay.get_fighter(player_two)
+            break
+        print("Invalid Choice")
+    player_1, player_2 = first_player, second_player
+    while True:
+        battle(player_1, player_2)
+        if player_2.is_dead():
+            winner(player_1, player_2)
             exit()
 
-        battle(rando, goku)
-        if goku.is_dead():
-            winner(rando, goku)
+        battle(player_2, player_1)
+        if player_1.is_dead():
+            winner(player_2, player_1)
             exit()
 
 
@@ -164,7 +211,7 @@ def one_player_game():
             player_one = gameplay.get_fighter(character)
             player_two = gameplay.get_fighter(rand_character)
             break
-        print('invalid choice')
+        print('Invalid Choice')
 
     player_1, player_2 = player_one, player_two
     while True:
@@ -179,6 +226,7 @@ def one_player_game():
 
 
 def main():
+    beginning_skull()
     players = input("How many players? 1 or 2? ").strip()
     if players == '2':
         two_player_game()
