@@ -76,3 +76,16 @@ class TestGladiator:
         player_1.haboken(player_2)
         assert player_1.rage == 25
         assert player_2.health <= 95 and player_2.health >= 80
+
+
+class TestGameplay:
+    def test_class_Gameplay_works(self):
+        assert isinstance(core.Gameplay, type)
+
+    def test_Gameplay_init_works(self):
+        ''' testing the init functioin from the core
+        '''
+        bob = core.Gladiator(0, 0, 0, 0, 'bob')
+        billy = core.Gladiator(0, 0, 0, 0, 'billy')
+        fighters = core.Gameplay([bob, billy])
+        assert fighters.gladiators == [bob, billy]
