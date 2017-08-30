@@ -159,7 +159,8 @@ def one_player_game():
         character = input('Which one would you like to be? ').strip().lower()
         individuals = ['goku', 'ryu', 'mega man', 'mickey mouse']
         rand_character = choice(individuals)
-        if gameplay.is_fighter(character) and gameplay.is_fighter(rand_character):
+        if gameplay.is_fighter(character) and gameplay.is_fighter(
+                rand_character):
             player_one = gameplay.get_fighter(character)
             player_two = gameplay.get_fighter(rand_character)
             break
@@ -186,4 +187,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main(
+    main()
