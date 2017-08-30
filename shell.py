@@ -107,7 +107,7 @@ def make_players():
         core.Gladiator(100, 0, randint(5, 9), randint(15, 25), 'Goku'),
         core.Gladiator(100, 0, randint(5, 9), randint(15, 25), 'Ryu'),
         core.Gladiator(100, 100, 50, 50, 'Mickey Mouse'),
-        core.Gladiator(45, 0, randint(9, 14), randint(20, 30), 'Mega Man')
+        core.Gladiator(100, 0, randint(9, 14), randint(20, 30), 'Mega Man')
     ])
     return gameplay
 
