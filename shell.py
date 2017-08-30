@@ -66,6 +66,42 @@ def mickey_mouse():
         end="")
 
 
+def mega_man():
+    '''
+    prints the ascii every time megaman is choosen
+    '''
+    cprint(
+        "         _..._                   \n"
+        "      .'     '.                  \n"
+        "     /`\     /`\    |\           \n"
+        "    (__|     |__)|\  \\  /|      \n"
+        "    (     '     ) \\ || //      \n"
+        "     \         /   \\||//        \n"
+        "      \   _   /  |\|`  /         \n"
+        "       '.___.'   \____/          \n"
+        "        (___)    (___)           \n"
+        "      /`     `\  / /             \n"
+        "     |         \/ /              \n"
+        "     | |     |\  /               \n"
+        "     | |     | '`                \n"
+        "     | |     |                   \n"
+        "     | |     |                   \n"
+        "     |_|_____|                   \n"
+        "    (___)_____)                  \n"
+        "    /    \   |                   \n"
+        "   /   |\|   |                   \n"
+        "  //||\\  Y  |                   \n"
+        " || || \\ |  |                   \n"
+        " |/ \\ |\||  |                   \n"
+        "     \||__|__|                   \n"
+        "      (___|___)                  \n"
+        "      /   A   \                  \n"
+        "     /   / \   \                 \n"
+        "    \___/   \___/                \n",
+        'red',
+        end="")
+
+
 def make_players():
     gameplay = core.Gameplay([
         core.Gladiator(100, 0, randint(5, 9), randint(15, 25), 'Goku'),
@@ -74,6 +110,54 @@ def make_players():
         core.Gladiator(45, 0, randint(9, 14), randint(20, 30), 'Mega Man')
     ])
     return gameplay
+
+
+def goku():
+    ''' function will print goku every time it is called
+    '''
+    cprint(
+        """                            _                                           \n"""
+        """                    \'-._ _.--'~~'--._                                  \n"""
+        """                        \   "            ^.    ___                      \n"""
+        """                        /                  \.-~_.-~                     \n"""
+        """                .-----'     /\/"\ /~-._      /                          \n"""
+        """                /  __      _/\-.__\L_.-/\     "-.                       \n"""
+        """            /.-"  \    ( ` \_o>"<o_/  \  .--._\                         \n"""
+        """            /'      \    \:     "     :/_/     "`                       \n"""
+        """                    /  /\ "\    ~    /~"                                \n"""
+        """                    \ I  \/]"-._ _.-"[                                  \n"""
+        """                ___ \|___/ ./    l   \___   ___                         \n"""
+        """            .--v~   "v` ( `-.__   __.-' ) ~v"   ~v--.                   \n"""
+        """        .-{   |     :   \_    "~"    _/   :     |   }-.                 \n"""
+        """        /   \  |           ~-.,___,.-~           |  /   \               \n"""
+        """        ]     \ |                                 | /     [             \n"""
+        """        /\     \|     :                     :     |/     /\             \n"""
+        """        /  ^._  _K.___,^                     ^.___,K_  _.^  \           \n"""
+        """    /   /  "~/  "\                           /"  \~"  \   \             \n"""
+        """    /   /    /     \ _          :          _ /     \    \   \           \n"""
+        """    .^--./    /       Y___________l___________Y       \    \.--^.       \n"""
+        """    [    \   /        |        [/    ]        |        \   /    ]       \n"""
+        """    |     "v"         l________[____/]________j         }"     /        \n"""
+        """    }------t          /                       \       /`-.     /        \n"""
+        """    |      |         Y                         Y     /    "-._/         \n"""
+        """    }-----v'         |         :               |     7-.     /          \n"""
+        """    |   |_|          |         l               |    / . "-._/           \n"""
+        """    l  .[_]          :          \              :  r[]/_.  /             \n"""
+        """    \_____]                     "--.             "-.____/               \n""",
+        'orange',
+        end="")
+
+
+def show_asii(player):
+    ''' Helper funtion to make the rest of the shell look
+    cleaner
+    '''
+    if player == 'mickey mouse':
+        mickey_mouse()
+    elif player == 'mega man':
+        mega_man()
+    elif player == 'goku':
+        goku()
 
 
 def print_players():
@@ -174,12 +258,10 @@ def two_player_game():
     while True:
         player_one = input(
             'Player 1, who would you like to be? ').strip().lower()
-        if player_one == 'mickey mouse':
-            mickey_mouse()
+        show_asii(player_one)
         player_two = input(
             'Player 2, who would you like to be? ').strip().lower()
-        if player_two == 'mickey mouse':
-            mickey_mouse()
+        show_asii(player_two)
         if gameplay.is_fighter(player_one) and gameplay.is_fighter(player_two):
             first_player = gameplay.get_fighter(player_one)
             second_player = gameplay.get_fighter(player_two)
@@ -227,11 +309,12 @@ def one_player_game():
 
 def main():
     beginning_skull()
-    players = input("How many players? 1 or 2? ").strip()
-    if players == '2':
-        two_player_game()
-    else:
-        one_player_game()
+    while True:
+        players = input("How many players? 1 or 2? ").strip()
+        if players == '2':
+            two_player_game()
+        elif players == '1':
+            one_player_game()
 
 
 if __name__ == '__main__':
