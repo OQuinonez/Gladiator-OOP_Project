@@ -106,9 +106,11 @@ class Gameplay:
 
     def is_fighter(self, fighter_name):
         ''' returns true iff the fighter_name matches one of the fighters '''
-        return fighter_name in [fighter.name for fighter in self.gladiators]
+        return fighter_name.lower() in [
+            fighter.name.lower() for fighter in self.gladiators
+        ]
 
     def get_fighter(self, fighter_name):
         for fighter in self.gladiators:
-            if fighter.name == fighter_name:
+            if fighter.name.lower() == fighter_name.lower():
                 return fighter
