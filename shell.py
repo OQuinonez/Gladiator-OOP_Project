@@ -144,7 +144,43 @@ def goku():
         """    |   |_|          |         l               |    / . "-._/           \n"""
         """    l  .[_]          :          \              :  r[]/_.  /             \n"""
         """    \_____]                     "--.             "-.____/               \n""",
-        'orange',
+        'blue',
+        end="")
+
+
+def ryu():
+    ''' function will print goku every time it is called
+    '''
+    cprint(
+        """                            _                                           \n"""
+        """                    \'-._ _.--'~~'--._                                  \n"""
+        """                        \   "            ^.    ___                      \n"""
+        """                        /                  \.-~_.-~                     \n"""
+        """                .-----'     /\/"\ /~-._      /                          \n"""
+        """                /  __      _/\-.__\L_.-/\     "-.                       \n"""
+        """            /.-"  \    ( ` \_o>"<o_/  \  .--._\                         \n"""
+        """            /'      \    \:     "     :/_/     "`                       \n"""
+        """                    /  /\ "\    ~    /~"                                \n"""
+        """                    \ I  \/]"-._ _.-"[                                  \n"""
+        """                ___ \|___/ ./    l   \___   ___                         \n"""
+        """            .--v~   "v` ( `-.__   __.-' ) ~v"   ~v--.                   \n"""
+        """        .-{   |     :   \_    "~"    _/   :     |   }-.                 \n"""
+        """        /   \  |           ~-.,___,.-~           |  /   \               \n"""
+        """        ]     \ |                                 | /     [             \n"""
+        """        /\     \|     :                     :     |/     /\             \n"""
+        """        /  ^._  _K.___,^                     ^.___,K_  _.^  \           \n"""
+        """    /   /  "~/  "\                           /"  \~"  \   \             \n"""
+        """    /   /    /     \ _          :          _ /     \    \   \           \n"""
+        """    .^--./    /       Y___________l___________Y       \    \.--^.       \n"""
+        """    [    \   /        |        [/    ]        |        \   /    ]       \n"""
+        """    |     "v"         l________[____/]________j         }"     /        \n"""
+        """    }------t          /                       \       /`-.     /        \n"""
+        """    |      |         Y                         Y     /    "-._/         \n"""
+        """    }-----v'         |         :               |     7-.     /          \n"""
+        """    |   |_|          |         l               |    / . "-._/           \n"""
+        """    l  .[_]          :          \              :  r[]/_.  /             \n"""
+        """    \_____]                     "--.             "-.____/               \n""",
+        'yellow',
         end="")
 
 
@@ -158,6 +194,8 @@ def show_asii(player):
         mega_man()
     elif player == 'goku':
         goku()
+    elif player == 'ryu':
+        ryu()
 
 
 def print_players():
@@ -283,11 +321,13 @@ def two_player_game():
 def one_player_game():
     gameplay = make_players()
     print_players()
-    # print(goku, ryu, sep="\n")
     while True:
         character = input('Which one would you like to be? ').strip().lower()
+        show_asii(character)
         individuals = ['goku', 'ryu', 'mega man', 'mickey mouse']
         rand_character = choice(individuals)
+        print('You will be fighting against ', rand_character)
+        show_asii(rand_character)
         if gameplay.is_fighter(character) and gameplay.is_fighter(
                 rand_character):
             player_one = gameplay.get_fighter(character)
