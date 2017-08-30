@@ -154,33 +154,31 @@ def two_player_game():
 def one_player_game():
     gameplay = make_players()
     print_players()
-    fighter_name = input('Which fighter would you like? ').strip().lower()
     # print(goku, ryu, sep="\n")
-    player_one = gameplay.get_fighter(fighter_name)
     while True:
-        character = input('Which one would you like to be?').strip().lower()
-        if character in ['goku', 'ryu']:
+        character = input('Which one would you like to be? ').strip().lower()
+        individuals = ['goku', 'ryu', 'mega man', 'mickey mouse']
+        rand_character = choice(individuals)
+        if gameplay.is_fighter(character) and gameplay.is_fighter(rand_character):
+            player_one = gameplay.get_fighter(character)
+            player_two = gameplay.get_fighter(rand_character)
             break
         print('invalid choice')
 
-    if character == 'goku':
-        player_1, player_2 = goku, ryu
-    else:
-        player_1, player_2 = ryu, goku
-
+    player_1, player_2 = player_one, player_two
     while True:
-        battle(player_1, player_2)
-        if player_2.is_dead():
-            winner(player_1, player_2)
+        battle(player_one, player_two)
+        if player_two.is_dead():
+            winner(player_one, player_two)
             exit()
-        one_player(player_2, player_1)
-        if player_1.is_dead():
-            winner(player_2, player_1)
+        one_player(player_two, player_one)
+        if player_one.is_dead():
+            winner(player_two, player_one)
             exit()
 
 
 def main():
-    players = input("How many players? 1 or 2 ").strip()
+    players = input("How many players? 1 or 2? ").strip()
     if players == '2':
         two_player_game()
     else:
@@ -188,4 +186,4 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(
